@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>vscode+vivado | little wang</title><meta name="author" content="Little wang"><meta name="copyright" content="Little wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首先安装好Vivado和VScode 软件，在网上找教程或者官方网站下载都行， ctags 插件可以在github上获取，直接搜索就可以，解压到一个自己想要放置的文件夹中 以下是根据自己的安装路径设置的系统变量，怎么设置系统变量路径（PATH）可以网上找教程  这是我的ctags.exe的安装路径  设置好路径之后可以打开VIvado软件点击工具栏中的Tools-&gt;Settings-&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode+vivado">
+<meta property="og:url" content="https://mock124578.github.io/2025/08/08/vscode-vivado/index.html">
+<meta property="og:site_name" content="little wang">
+<meta property="og:description" content="首先安装好Vivado和VScode 软件，在网上找教程或者官方网站下载都行， ctags 插件可以在github上获取，直接搜索就可以，解压到一个自己想要放置的文件夹中 以下是根据自己的安装路径设置的系统变量，怎么设置系统变量路径（PATH）可以网上找教程  这是我的ctags.exe的安装路径  设置好路径之后可以打开VIvado软件点击工具栏中的Tools-&gt;Settings-&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mock124578.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-08-08T02:58:37.000Z">
+<meta property="article:modified_time" content="2025-08-12T02:10:18.971Z">
+<meta property="article:author" content="Little wang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mock124578.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "vscode+vivado",
+  "url": "https://mock124578.github.io/2025/08/08/vscode-vivado/",
+  "image": "https://mock124578.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-08-08T02:58:37.000Z",
+  "dateModified": "2025-08-12T02:10:18.971Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Little wang",
+      "url": "https://mock124578.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="https://img.shetu66.com/2023/06/26/1687770032816929.png"><link rel="canonical" href="https://mock124578.github.io/2025/08/08/vscode-vivado/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'vscode+vivado',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(https://img.shetu66.com/2023/06/26/1687770032816929.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://img.shetu66.com/2023/06/26/1687770032816929.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://img.keaitupian.cn/newupload/08/1629449018344288.jpg" alt="Logo"><span class="site-name">little wang</span></a><a class="nav-page-title" href="/"><span class="site-name">vscode+vivado</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">vscode+vivado</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-08T02:58:37.000Z" title="发表于 2025-08-08 10:58:37">2025-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-12T02:10:18.971Z" title="更新于 2025-08-12 10:10:18">2025-08-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>首先安装好Vivado和VScode 软件，在网上找教程或者官方网站下载都行，</p>
+<p><strong>ctags 插件可以在github上获取，直接搜索就可以，解压到一个自己想要放置的文件夹中</strong></p>
+<p>以下是根据自己的安装路径设置的系统变量，怎么设置系统变量路径（PATH）可以网上找教程</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808154058471.png" alt="image-20250808154058471"></p>
+<p>这是我的ctags.exe的安装路径</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808154426033.png" alt="image-20250808154426033"></p>
+<p>设置好路径之后可以打开VIvado软件点击工具栏中的Tools-&gt;Settings-&gt;Text Editor-&gt;Custom Editor-&gt;</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808154843129.png" alt="image-20250808154843129"></p>
+<p><img src="/../_posts/vscode-vivado/image-20250808154920992.png" alt="image-20250808154920992"></p>
+<p><img src="/../_posts/vscode-vivado/image-20250808155124775.png" alt="image-20250808155124775"></p>
+<p>然后根据自己安装code.exe的位置填上：<strong>D:&#x2F;Programs&#x2F;Microsoft VS Code&#x2F;Code.exe [file name] -l[line number]</strong></p>
+<p>然后在vivado创建文件双击就可以跳转到code</p>
+<p>在vscode里面安装相关的插件：</p>
+<p>比如</p>
+<p>1.fitten code：类似ai补全，可以节省一部分时间写代码</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808155749596.png" alt="image-20250808155749596"></p>
+<p>2.xrun debug，检测verilog debug</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808160031277.png" alt="image-20250808160031277"></p>
+<p>3.verilog hdl：能够语法高亮和自动对齐等，</p>
+<p>通过设置ctags路径，前提是前面设置了系统变量的路径，在这个拓展的设置里面path填入ctags路径</p>
+<p>重启VScode ,鼠标放在变量上面会提示变量信息， 按Ctrl键点击变量名就会跳转到定义的地方**（最好是创建了vivado的工作区,我没创建之前没有转到定义）**</p>
+<p><img src="/../_posts/vscode-vivado/image-20250808160157437.png" alt="image-20250808160157437"></p>
+<p>利用vivado自带的语法纠错，在该拓展内搜索linter，切换到xvlog（一开始我们就为vivado设置了路径）</p>
+<p><img src="/../_posts/vscode-vivado/image-20250812100236295.png" alt="image-20250812100236295"></p>
+<p>效果展示：</p>
+<p><img src="/../_posts/vscode-vivado/image-20250812100615460.png" alt="image-20250812100615460"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://mock124578.github.io">Little wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://mock124578.github.io/2025/08/08/vscode-vivado/">https://mock124578.github.io/2025/08/08/vscode-vivado/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://mock124578.github.io" target="_blank">little wang</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/08/06/two/" title="two"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">two</div></div><div class="info-2"><div class="info-item-1">第一步 a假设 SDK 安装在此路径上： 1234567891011C:/├── Xilinx├── DocNav├── Downloads├── SDK│   ├── 2017.4│   └── 2018.3├── Vivado│   ├── 2017.4│   └── 2018.3└── xic    第一步 b✅ 1. Cygwin 安装了 make 工具请检查你是否安装了 make：在 Cygwin 终端中运行：make –version如果返回 make 的版本号，说明你已经装好了。如果提示 “command not found”，你需要安装它。 ✅ 安装 make（如果没装的话）：	运行 Cygwin 安装程序（通常是 setup-x86_64.exe）。	搜索并勾选安装以下包： 1234567makegcc-core（有时候构建 HDL 会需要）bashgit（如果你还想用 Git 管理） 安装完后重新打开一个 Cygwin 终端。 ✅ 2. 加载 Vivado 环境变量 在 Cygwin 中，你需要调用 Vivado 2018.3 的设置脚本，但注意是 Windo...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Little wang</div><div class="author-info-description">千里之行始于足下</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">4</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/mock124578/blogger" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/2091577612@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/08/vscode-vivado/" title="vscode+vivado">vscode+vivado</a><time datetime="2025-08-08T02:58:37.000Z" title="发表于 2025-08-08 10:58:37">2025-08-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/06/two/" title="two">two</a><time datetime="2025-08-06T07:34:07.000Z" title="发表于 2025-08-06 15:34:07">2025-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/06/hello-world/" title="Hello World">Hello World</a><time datetime="2025-08-06T06:20:10.068Z" title="发表于 2025-08-06 14:20:10">2025-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2018/01/05/categories/" title="分类">分类</a><time datetime="2018-01-04T16:00:00.000Z" title="发表于 2018-01-05 00:00:00">2018-01-05</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(https://img.shetu66.com/2023/06/26/1687770032816929.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 By Little wang</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
